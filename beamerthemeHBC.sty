@@ -1,0 +1,222 @@
+% Copyright 2014 by Jonas Dürr
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+
+\mode<presentation>
+
+\RequirePackage{tikz, datetime, textpos, graphicx}
+\DeclareOption{beteckna}{
+	\setsansfont[Ligatures=TeX, 
+				 Extension=.ttf,
+				 BoldFont=*Bold,
+				 ItalicFont=*Italic
+				 ]{FreeSans}
+}
+\ProcessOptions
+\yyyymmdddate \renewcommand{\dateseparator}{.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HBC COMMANDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\hbclogo}[1]{\newcommand{\Logo}{#1}}
+
+\newcommand{\sectionframe}[0]{
+	\begin{frame}
+		\frametitle{Inhalt}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
+\newcommand{\subsectionframe}[0]{
+	\begin{frame}
+		\frametitle{Inhalt}
+		\tableofcontents[currentsection,currentsubsection]
+	\end{frame}
+}
+
+%
+% \ThankYouFrame noch anpassen!!!
+%\newcommand\ThankYouFrame{
+%    \begin{frame}[plain,t]
+%        \begin{pgfpicture}
+%            \pgf@relevantforpicturesizefalse
+%            \pgftransformxshift{-\Gm@lmargin}
+%            \pgftransformyshift{5.5pt}
+%            \MakeBlueBackgroud
+%        \end{pgfpicture}
+%    \end{frame}
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLORS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{bgHBCgrey}{RGB}{140,140,140}
+\definecolor{fgHBCgrey}{RGB}{100,100,100}
+\definecolor{HBCyellow}{RGB}{249,187,0}
+
+\definecolor{MedianBrown}{RGB}{119,95,85}
+\definecolor{MedianLightBrown}{RGB}{235,221,195}
+\definecolor{MedianLightBlue}{RGB}{148,182,210}
+\definecolor{MedianOrange}{RGB}{221,128,71}
+\definecolor{MedianLightOrange}{RGB}{216,178,92}
+\definecolor{MedianUltraLightOrange}{RGB}{245,236,215}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLOR STYLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamercolor*{frametitle}{fg=fgHBCgrey}
+\setbeamercolor*{title page header}{fg=black}
+\setbeamercolor*{title}{fg=black}
+\setbeamercolor*{author}{fg=black}
+\setbeamercolor*{author in head/foot}{fg=fgHBCgrey}
+\setbeamercolor*{date}{fg=black}
+\setbeamercolor*{date in head/foot}{fg=fgHBCgrey}
+\setbeamercolor*{item}{fg=black}
+\setbeamercolor*{subtitle}{fg=fgHBCgrey}
+\setbeamercolor*{footline on titlepage}{fg=fgHBCgrey}
+\setbeamercolor*{pagenumber in head/foot}{fg=fgHBCgrey}
+\setbeamercolor*{sections/subsections in toc}{fg=green,bg=red}
+
+\setbeamercolor*{block title}{fg=black, bg=MedianOrange}
+\setbeamercolor*{block title example}{fg=white, bg=HBCyellow}
+\setbeamercolor*{block body}{bg=MedianUltraLightOrange}
+\setbeamercolor*{block body example}{bg=bgHBCgrey}
+
+
+\setbeamercolor*{section in toc}{fg=black}
+\setbeamercolor*{section page}{fg=black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FONT STYLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamerfont{section page}{size=\LARGE}
+\setbeamerfont{title}{size=\LARGE}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{author in head/foot}{size=\tiny}
+\setbeamerfont{date}{size=\Large}
+\setbeamerfont{date in head/foot}{size=\tiny}
+\setbeamerfont{pagenumber in head/foot}{size=\tiny}
+\setbeamerfont{frametitle}{size=\small}
+\setbeamerfont{section}{size=\normalsize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TEMPLATES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{items}[default]
+\setbeamertemplate{itemize item}{\tikz{\draw[color=black, fill] circle(.1);}}
+\setbeamertemplate{itemize subitem}{\tikz{\draw[color=black, ultra thick] circle(.1);}}
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+\setbeamertemplate{subsection in toc}{
+	\hspace{1.2em}\inserttocsubsectionnumber.~\inserttocsubsection\par}
+
+\newenvironment{xplainframe}{\bgroup\setbeamertemplate{background}{}\begin{frame}[plain]}{\end{frame}\egroup\footline}
+
+\setbeamertemplate{background}{
+  
+  \ifnum\thepage>1\relax% Not the title page
+		\begin{tikzpicture}
+			\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+			\fill[color=bgHBCgrey] (0,0.0) rectangle(11.04cm, 0.808);
+		\end{tikzpicture}
+	\else% Title page
+		\begin{tikzpicture}
+			\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+			\fill[color=bgHBCgrey] (0,0.0) rectangle(\the\paperwidth,0.808);{}
+		\end{tikzpicture}
+  \fi
+}
+
+\setbeamertemplate{title page}{
+	\begin{textblock*}{12.8cm}(.0cm,2.5cm)
+		\begin{beamercolorbox}[wd=11cm,center]{title page header}
+			\usebeamerfont{title}\usebeamercolor{title}\inserttitle%
+		\end{beamercolorbox}%
+		\vskip1cm
+		\begin{beamercolorbox}[wd=11cm,center]{subtitle}
+			\usebeamerfont{subtitle}\usebeamercolor{subtitle}\insertsubtitle%
+		\end{beamercolorbox}
+	 \end{textblock*}
+	 \begin{textblock*}{12.8cm}(.0cm,6.5cm)
+		\begin{beamercolorbox}[wd=11cm,center]{author on Titelpage}
+			\usebeamerfont{author}\usebeamercolor{author}\insertauthor%
+		\end{beamercolorbox}
+	\vskip0.3cm
+		\begin{beamercolorbox}[wd=11cm,center]{institute}
+			\usebeamerfont{institute}\usebeamercolor{institute}\insertinstitute%
+		\end{beamercolorbox}
+    \end{textblock*}
+    \begin{textblock*}{\paperwidth}(-1cm,8.8cm)
+		\begin{beamercolorbox}[center]{footline on titlepage}
+	      \usebeamerfont{date in head/foot}\usebeamercolor{footline on titlepage}HBC.Hochschule Biberach | Karlstra\ss{}e 11 | 88400 Biberach/Ri\ss{} | www.hochschule-biberach.de%
+	    \end{beamercolorbox}
+    \end{textblock*}
+    \begin{textblock*}{3cm}(9.5cm,-0.2cm)
+		\includegraphics[width=2cm]{\Logo}
+	\end{textblock*}
+}
+
+\setbeamertemplate{section page}{
+	\begin{textblock*}{12cm}(0.8cm,-0.0cm)
+		\begin{beamercolorbox}{section page}
+			\insertsectionhead
+		\end{beamercolorbox}
+	\end{textblock*}
+	\begin{textblock*}{\paperwidth}(-0.5cm,8.8cm)
+		\begin{beamercolorbox}[center]{date on footline}
+			\usebeamerfont{date in head/foot}\usebeamercolor{date in head/foot}\insertshortdate
+		\end{beamercolorbox}
+	\end{textblock*}
+}
+
+\setbeamertemplate{frametitle}{
+	\begin{textblock*}{12cm}(-0.5cm,.4cm)
+		\begin{beamercolorbox}{frametitle}
+			\usebeamerfont{section}\insertsection
+		\end{beamercolorbox}
+	\end{textblock*}
+	\begin{textblock*}{\the\paperwidth}(-1cm,0.8cm)
+		\begin{beamercolorbox}{framerule}
+			\rule{\the\paperwidth}{1pt}
+		\end{beamercolorbox}
+	\end{textblock*}
+	\begin{textblock*}{12cm}(-0.3cm,1.2cm)
+		\begin{beamercolorbox}{}
+			\usebeamerfont{frametitle}\insertframetitle{}
+		\end{beamercolorbox}
+	\end{textblock*}
+	\begin{textblock*}{10.04cm}(-0.5cm,9.1cm)
+	\begin{beamercolorbox}[left]{date on footline}
+		\usebeamerfont{date in head/foot}\usebeamercolor{date in head/foot}\insertshortdate
+	\end{beamercolorbox}
+	\end{textblock*}
+	\begin{textblock*}{10.04cm}(-0.5cm,9.1cm)
+	\begin{beamercolorbox}[center]{author on footline}
+		{\usebeamerfont{pagenumber in head/foot}\usebeamercolor{pagenumber in head/foot}\insertshortauthor}
+	\end{beamercolorbox}
+	\end{textblock*}
+	\begin{textblock*}{10.04cm}(-0.5cm,9.1cm)
+	\begin{beamercolorbox}[right]{pagenumber in head/foot}
+		\usebeamerfont{pagenumber in head/foot}\usebeamercolor{pagenumber in head/foot}\insertframenumber
+	\end{beamercolorbox}
+	\end{textblock*}
+	\begin{textblock*}{1.73cm}(10.2cm,8.25cm)
+		\includegraphics[width=1.3cm]{\Logo}
+	\end{textblock*}
+}
+
+
+
+\addtobeamertemplate{footnote}{}{\vspace{4ex}}
+
+\mode<all>

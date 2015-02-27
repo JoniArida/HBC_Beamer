@@ -1,0 +1,35 @@
+\mode<presentation>
+
+\definecolor{bgHBCgrey}{RGB}{128,128,138}
+
+\setbeamertemplate{background}{
+  \begin{tikzpicture}
+  \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+  \fill[color=bgHBCgrey] (0,0) rectangle(\the\paperwidth,1.0);
+  \ifnum\thepage>1\relax%
+   \fill[white,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+   \fi
+  \end{tikzpicture}
+}
+%%%%%%%%%%%%%%%%%%%%%%
+%Title page
+%%%%%%%%%%%%%%%%%%%%%%
+\defbeamertemplate*{title page}{HBC}[1][]
+{ 
+   \vbox{}\vskip1cm%
+    \begin{beamercolorbox}[leftskip=2cm,rightskip=2cm,center,ht=4cm]{title page header}
+      \vbox {\usebeamerfont{title}\textbf{\inserttitle}\par\hfill}%
+    \end{beamercolorbox}%
+    \vskip2.92cm%
+    \hbox{
+    \begin{beamercolorbox}[wd=0.2\paperwidth,ht=4.25ex,dp=3ex]{date in head/foot}
+      \usebeamerfont{author in head/foot}\insertdate{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.8\paperwidth,ht=4.25ex,dp=3ex,center]{author in head/foot}
+      \usebeamerfont{date in head/foot}\insertauthor%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.2\paperwidth,ht=4.25ex,dp=3ex,right]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\insertframenumber%
+    \end{beamercolorbox}}%
+}%
+
