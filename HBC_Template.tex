@@ -1,0 +1,109 @@
+\documentclass{beamer}
+\usetheme{HBC}
+
+\usepackage[utf8]{inputenc}
+\usepackage{ngerman}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[expert]{mathdesign}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+
+
+\title{\textbf{Präsentationen mit dem HBC-Theme}}
+\subtitle{Kurze Anleitung zur Benutzung des Layouts}
+\author{J. D.}
+\date{29.04.2014}
+\institute{Hochschule Biberach\\Studiengang Gebäudeklimatik}
+\hbclogo{GFX/HBC_logo.pdf}
+
+\begin{document}
+\titlepage
+
+\begin{frame}
+\frametitle{Inhalt}
+\tableofcontents
+\end{frame}
+
+%=============================================================================================
+
+\section{Benutzen des Themas}
+\sectionframe
+\begin{frame}
+\frametitle{Installation}
+Um das Thema muss es heruntergeladen und am besten in den \LaTeX-Ordner des Benutzers kopieren. (~/texmf/tex/latex/)\linebreak
+Es kann aber auch in dem Ordner abgelegt werden in dem Projektordner befinden in dem das Dokument erstellt wird.
+\end{frame}
+
+\begin{frame}
+\frametitle{Mathe}
+Hier etwas Mathe:
+\begin{equation}
+F(s):=\int\limits_{0}^{\infty}f(t)e^{-st}\mathrm{d}t=\mathscr{L}\{f(t)\}
+\end{equation}
+\end{frame}
+
+\begin{frame}
+\frametitle{Animations}
+Animationen
+\pause
+können auch Genutzt werden:
+\begin{itemize}[<+->]
+  \item Das steht von Anfang an da!
+  \item Erscheint bei ersten Klick
+  \item Das beim zweiten
+  \item usw…
+  \item Am besten mal die Beamer Doku lesen!
+\end{itemize}
+\end{frame}
+
+\subsection{Subsection}
+\subsectionframe
+\begin{frame}
+\frametitle{Subsections}
+Es lassen sich auch Subsection erstellen.\linebreak
+Die Inhaltsverzeichnisse sind optional.
+\end{frame}
+
+\begin{frame}
+Die  Seiten brauchen alle einen Titel.\linebreak
+Sonst sehen die Seiten so aus…
+\end{frame}
+
+\subsection{Blocks}
+\subsectionframe
+\begin{frame}
+\frametitle{Blocks}
+\begin{definition}[Block]
+In Beamer kann man auch Blocks nutzen. Dies ist ein Definition Block.
+\end{definition}
+
+\begin{theorem}[Theorem Block]
+$a^n + b^n = c^n, n \leq 2$ 
+\end{theorem}
+
+\begin{alertblock}{Ein Alert Block}
+Alarm…!?
+\end{alertblock}
+\end{frame}
+
+
+\section{ToDo} % (fold)
+\label{sec:Was moch zu tun ist}
+\sectionframe
+
+\begin{frame}
+
+\frametitle{Notation}
+\begin{definition}[ToDo]
+\begin{enumerate}[<+->]
+\item Es sollten die Farben der Blocks noch an das „corporate Design“ angepasst werden.
+\item Es fehlt noch eine Folie zum Ende. Sowas wie: „Vielen Dank für die Aufmerksamkeit.“
+\end{enumerate}
+
+
+\end{definition}
+\end{frame}
+
+
+\end{document}
